@@ -15,6 +15,7 @@ app.get('/api/health', (req, res) => {
 
 // API routes
 app.use('/api', apiRoutes);
+app.use('/.netlify/functions/api', apiRoutes);
 
 if (process.env.NODE_ENV !== 'production' && !process.env.NETLIFY) {
   app.listen(PORT, () => {

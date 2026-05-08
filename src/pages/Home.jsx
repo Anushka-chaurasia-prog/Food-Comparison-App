@@ -9,7 +9,10 @@ export default function Home() {
 
   useEffect(() => {
     fetch('/api/restaurants')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API Error');
+        return res.json();
+      })
       .then(data => {
         setRestaurants(data);
         setLoading(false);

@@ -13,7 +13,10 @@ export default function Restaurant() {
 
   useEffect(() => {
     fetch(`/api/restaurants/${id}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API Error');
+        return res.json();
+      })
       .then(data => {
         setRestaurant(data);
         setLoading(false);
